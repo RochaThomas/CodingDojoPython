@@ -1,0 +1,18 @@
+
+body {
+    text-align: center;
+}
+
+.boardContainer {
+    display: flex;
+    flex-direction: column;
+}
+.rows {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+}
+.box1, .box2 {
+    height: 50px;
+    width: 50px;
+}
