@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Dojo Survey</h1>
+        <form action="/process" method="post">
+            <label for="full_name">Name: </label>
+            <input type="text" name="full_name" id="full_name">
+            <label for="location">Location: </label>
+            <select name="location" id="location">
+                <!-- could probably use jinja and for loops to fill these out -->
+                <option value="" disabled selected hidden >---Select a location---</option>
+                <option value="Chicago">Chicago</option>
+                <option value="Seattle">Seattle</option>
+                <option value="Online">Online</option>
+                <option value="Burbank">Burbank</option>
+                <option value="Bellevue">Bellevue</option>
+                <option value="San Jose">San Jose</option>
+            </select>
+            <label for="fav_lang">Favorite Language </label>
+            <select name="fav_lang" id="fav_lang">
+                <!-- could probably use jinja and for loops to fill these out -->
+                <option value="" disabled selected hidden>---Select a language---</option>
+                <option value="Python">Python</option>
+                <option value="CSS">CSS</option>
+                <option value="HTML">HTML</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="Java">Java</option>
+                <option value="R">R</option>
+            </select>
+            <label for="comments">Comments: </label>
+            <input type="text" name="comments" id="comments">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
