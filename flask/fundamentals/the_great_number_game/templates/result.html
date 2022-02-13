@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE GREAT NUMBER GAME!!!</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Great Number Game!!!</h1>
+        <p>I am thinking of a number between 1 and 100</p>
+
+        {% if session['result'] == 0: %}
+            <h2>You got it!!! The number was {{ session['rand_num'] }}. Good job!!!</h2>
+            <h2>Would you like to play again?</h2>
+            <form action="/successful" method="post">
+                <input type="submit" value="Play Again!">
+            </form>
+
+        {% elif session['result'] == 1: %}
+            <h2>Too high! Guess again!</h2>
+        {% else: %}
+            <h2>Too low! Guess again!</h2>
+        {% endif %}
+
+        <p>Your last guess was {{ session['num_guessed'] }}</p>
+        <form action="/process" method="post">
+            <label for="num_guessed">Take a guess!!!</label>
+            <input type="text" name="num_guessed" id="num_guessed">
+            <input type="submit" value="Submit">
+        </form>
+        <!-- delete this next line when you are done -->
+        <!-- <p>you are trying to guess this number {{session['rand_num']}}</p> -->
+    </div>
+</body>
+</html>
