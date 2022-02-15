@@ -1,0 +1,37 @@
+USE dojos_and_ninjas_schema;
+
+INSERT INTO dojos (id, name, created_at, updated_at)
+VALUES (1, 'Shaolin Dojo', NOW(), NOW());
+
+INSERT INTO dojos (name, created_at, updated_at)
+VALUES ('Shaolin Dojo', NOW(), NOW());
+
+SELECT * FROM dojos;
+
+UPDATE dojos SET name = 'Linshao Dojo'
+WHERE id = 2;
+
+SELECT * FROM dojos;
+
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, dojo_id)
+VALUES ('Ferris', 'Bueller', 18, NOW(), NOW(), 1);
+
+SELECT * FROM ninjas;
+
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, dojo_id)
+VALUES ('Cameron', 'Frye', 18, NOW(), NOW(), 1);
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, dojo_id)
+VALUES ('Abe', 'Froman', 33, NOW(), NOW(), 2);
+
+SELECT * FROM ninjas;
+
+SELECT GROUP_CONCAT(ninjas.first_name, " ", ninjas.last_name) AS full_name, dojos.name
+FROM dojos
+JOIN ninjas ON dojos.id = ninjas.dojo_id
+GROUP BY ninjas.id; 
+
+SELECT * FROM ninjas;
+
+DELETE FROM ninjas WHERE id = 3;
+
+SELECT * FROM ninjas;
