@@ -1,0 +1,66 @@
+USE dojos_and_ninjas_schema;
+
+INSERT INTO dojos (name, created_at, updated_at)
+VALUES ('Shaolin Dojo', NOW(), NOW());
+
+INSERT INTO dojos (name, created_at, updated_at)
+VALUES ('Linshao Dojo', NOW(), NOW());
+
+INSERT INTO dojos (name, created_at, updated_at)
+VALUES ('Pai Sho Dojo', NOW(), NOW());
+
+SELECT * FROM dojos;
+
+DELETE FROM dojos
+WHERE id = 1 or id = 2 or id = 3;
+
+INSERT INTO dojos (name, created_at, updated_at)
+VALUES ('White Lotus Dojo', NOW(), NOW());
+
+INSERT INTO dojos (name, created_at, updated_at)
+VALUES ('Red Lotus Dojo', NOW(), NOW());
+
+INSERT INTO dojos (name, created_at, updated_at)
+VALUES ('Team Avatar Dojo', NOW(), NOW());
+
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, dojo_id)
+VALUES ('General', 'Iroh', 70, NOW(), NOW(), 4);
+
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, dojo_id)
+VALUES ('King', 'Bumi', 112, NOW(), NOW(), 4);
+
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, dojo_id)
+VALUES ('Master', 'Pakku', 75, NOW(), NOW(), 4);
+
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, dojo_id)
+VALUES ('Leader', 'Zaheer', 30, NOW(), NOW(), 5);
+
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, dojo_id)
+VALUES ('Lava-Bender', 'Ghazan', 32, NOW(), NOW(), 5);
+
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, dojo_id)
+VALUES ('Ming', 'Hua', 37, NOW(), NOW(), 5);
+
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, dojo_id)
+VALUES ('Avatar', 'Aang', 112, NOW(), NOW(), 6);
+
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, dojo_id)
+VALUES ('Master', 'Katara', 15, NOW(), NOW(), 6);
+
+INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, dojo_id)
+VALUES ('Chief', 'Sokka', 17, NOW(), NOW(), 6);
+
+SELECT * FROM ninjas
+WHERE dojo_id = 4;
+
+SELECT * FROM ninjas
+WHERE dojo_id = 6;
+
+SELECT * FROM dojos
+WHERE id = 6; 
+
+SELECT dojos.id, dojos.name, dojos.created_at, dojos.updated_at 
+FROM dojos
+JOIN ninjas 
+ON dojos.id = ninjas.dojo_id
+WHERE ninjas.id = 9;
