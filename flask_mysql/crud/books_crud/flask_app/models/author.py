@@ -27,21 +27,40 @@ class Author:
         return connectToMySQL("books_schema").query_db(query, data)
 
     @classmethod
-    def get_authors_favorites(cls, data):
-        query = """SELECT * authors
-                    LEFT JOIN authors_favorite_books ON authors_favorite_books.author_id = authors.id
-                    LEFT JOIN books ON authors_favorite_books.book_id = books.id
-                    WHERE authors.id = %(id)s"""
+    def set_favorite(cls, data):
+        query = """INSERT INTO authors_favorite_books (book_id, author_id)
+                VALUES (%(book_id)s, %(author_id)s);"""
+        return connectToMySQL("books_schema").query_db(query, data)
+
+    @classmethod
+    def not_favorited_by(cls, data):
+        query = """SELECT * FROM authors
+                WHERE authors.id
+                NOT IN (SELECT author_id FROM authors_favorite_books
+                WHERE book_id = %(id)s);"""
+        authors = []
         results = connectToMySQL("books_schema").query_db(query, data)
         if results:
-            author = cls( results[0] )
+            for row in results:
+                authors.append( cls(row) )
+        return authors
+
+    @classmethod
+    def get_authors_favorites(cls, data):
+        query = """SELECT * FROM authors
+                LEFT JOIN authors_favorite_books ON authors.id = authors_favorite_books.author_id
+                LEFT JOIN books ON books.id = authors_favorite_books.book_id
+                WHERE authors.id = %(id)s;"""
+        results = connectToMySQL("books_schema").query_db(query, data)
+        author = cls(results[0])
+        if results:
             for row in results:
                 book_data = {
-                    "id": row('books.id'),
-                    "title": row('books.title'),
-                    "num_of_pages": row('books.num_of_pages'),
-                    "created_at": row('books.created_at'),
-                    "updated_at": row('books.updated_at')
+                    "id": row['books.id'],
+                    "title": row['title'],
+                    "num_of_pages": row['num_of_pages'],
+                    "created_at": row['books.created_at'],
+                    "updated_at": row['books.updated_at']
                 }
                 author.fav_books.append( book.Book(book_data) )
         return author

@@ -27,6 +27,20 @@ class Book:
                 VALUES (%(title)s, %(num_of_pages)s, NOW(), NOW());"""
         return connectToMySQL("books_schema").query_db(query, data)
     
+    
+    @classmethod
+    def not_favorited(cls, data):
+        query = """SELECT * FROM books
+                WHERE books.id
+                NOT IN (SELECT book_id FROM authors_favorite_books
+                WHERE author_id = %(id)s);"""
+        results = connectToMySQL("books_schema").query_db(query, data)
+        books = []
+        if results:
+            for row in results:
+                books.append( cls(row) )
+        return books
+
     @classmethod
     def get_favoriting_authors(cls, data):
         query = """SELECT * FROM books
@@ -34,12 +48,12 @@ class Book:
                 LEFT JOIN authors ON authors_favorite_books.author_id = authors.id
                 WHERE books.id = %(id)s;"""
         results = connectToMySQL('books_schema').query_db(query, data)
+        book = cls( results[0] )
         if results:
-            book = cls( results[0] )
             for row in results:
                 author_info = {
                     'id': row['authors.id'],
-                    'name': row['authors.name'],
+                    'name': row['name'],
                     'created_at': row['authors.created_at'],
                     'updated_at': row['authors.updated_at']
                 }
