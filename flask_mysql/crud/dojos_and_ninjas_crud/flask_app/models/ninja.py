@@ -15,12 +15,11 @@ class Ninja:
     @classmethod
     def get_all_ninjas(cls):
         query = "SELECT * FROM ninjas;"
-        
         results = connectToMySQL("dojos_and_ninjas_schema").query_db(query)
         ninjas = []
-
-        for row in results:
-            ninjas.append( cls(row) )
+        if results:
+            for row in results:
+                ninjas.append( cls(row) )
         
         return ninjas
 

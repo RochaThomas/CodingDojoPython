@@ -14,12 +14,10 @@ class Dojo:
     @classmethod
     def get_all_dojos(cls):
         query = "SELECT * FROM dojos;"
-
         results = connectToMySQL("dojos_and_ninjas_schema").query_db(query)
         dojos = []
         for row in results:
             dojos.append( cls(row) )
-
         return dojos
     
     @classmethod
@@ -35,7 +33,6 @@ class Dojo:
         dojo = cls(results[0])
         for row in results:
             dojo.ninjas.append(Ninja(row))
-
         return dojo
 
     @classmethod
