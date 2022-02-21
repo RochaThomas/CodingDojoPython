@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Page</title>
+</head>
+<body>
+    <div class="container">
+        <div class="success_div">
+            <p>The email address you entered is a VALID email address! Thank you!</p>
+        </div>
+        <h3>Email Addresses Entered</h3>
+        <ul>
+            {% for one_email in all_emails %}
+                <li>{{one_email.email}}     {{one_email.created_at}}    <a href="/email/delete/{{one_email.id}}">Delete</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
