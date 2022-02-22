@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Coding Dojo Wall</h1>
+        <h2>Welcome {{user.first_name}}!!!</h2>
+        <button><a href="/logout">logout</a></button>
+    </div>
+    <div class="messages_received">
+        <h2>{{messages|length}} Message(s) for You</h2>
+        {% for message in messages %}
+            <div class="message">
+                <p>{{message.sender}} said:</p>
+                <p>"{{message.content}}"</p>
+                <p>Received {{message.time_span()}}</p>
+                <a href="/delete/message/{{message.id}}">Delete</a>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="send_messages">
+        <!-- display number of messages the user has sent -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% for one_user in users %}
+            {% if one_user.id != session['user_id'] %}
+                <div class="send_a_message">
+                    <form action="/send_message" method="post">
+                        <input type="hidden" name="sender_id" value={{session.user_id}}>
+                        <input type="hidden" name="receiver_id" value={{one_user.id}}>
+                        <label for="receiver_id">{{one_user.first_name}} {{one_user.last_name}}: </label>
+                        <input type="text" name="content" id="content">
+                        <input type="submit" value="Send Message">
+                    </form>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</body>
+</html>
