@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome {{user.first_name}}!!!</h2>
+        <button><a href="/logout">Logout</a></button>
+        <button><a href="/recipes/new">Create</a></button>
+    </div>
+    <div class="contain">
+        <h2>These are the recipes</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Under 30 Minutes?</th>
+                <th>Actions</th>
+            </tr>
+            {% for one_recipe in recipes %}
+                <tr>
+                    <td>{{one_recipe.name}}</td>
+                    <td>{{one_recipe.under_30}}</td>
+                    <td>
+                        <a href="/recipes/{{one_recipe.id}}">View Instructions</a>
+                        {% if one_recipe.user_id == user.id %}
+                            <a href="/recipes/edit/{{one_recipe.id}}">Edit</a>
+                            <a href="/recipes/delete/{{one_recipe.id}}">Delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
