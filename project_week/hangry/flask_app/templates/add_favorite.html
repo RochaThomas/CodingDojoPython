@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangry: Add Favorite</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <h2 id="page_title">Hangry</h2>
+        <div class="button_div">
+            <a href=""><button class="button navbar_link" onmouseover="nav_link_react(this)" onmouseout="nav_link_unreact(this)">I NEED FOOD NOW!!!</button></a>
+            <a href=""><button class="button navbar_link" onmouseover="nav_link_react(this)" onmouseout="nav_link_unreact(this)">Add New Location</button></a>
+            <a href=""><button class="button navbar_link" onmouseover="nav_link_react(this)" onmouseout="nav_link_unreact(this)">Find A New Go-To</button></a>
+        </div>
+    </div>
+    <div class="content content_add">
+        <div class="add_div">
+            <h1>Add a Favorite</h1>
+            <form class="add_form" action="" method="post">
+                <div class="input_div">
+                    <label for="name">Name: </label>
+                    <input type="text" name="name" id="name">
+                </div>
+                <div class="address">
+                    <label for="address">Address: </label>
+                    <div class="input_div">
+                        <label for="street">Street </label>
+                        <input type="text" name="street" id="street">
+                    </div>
+                    <div class="input_div">
+                        <label for="city">City </label>
+                        <input type="text" name="city" id="city">
+                    </div>
+                    <div class="input_div">
+                        <label for="zipcode">Zipcode </label>
+                        <input type="text" name="zipcode" id="zipcode">
+                    </div>
+                </div>
+                <div class="input_div">
+                    <label for="min_away">How Far Away It Is: </label>
+                    <div class="input_and_unit">
+                        <input type="number" name="min_away" id="min_away" min="1">
+                        <p>minutes</p>
+                    </div>
+                </div>
+                <div class="input_div">
+                    <label for="location_list">Location List:</label>
+                    <select name="location_list" id="location_list">
+                        <option value="" disabled selected hidden>Choose a Location</option>
+                    </select>
+                </div>
+                <input class="button box_button add_button" id="add_button" type="submit" value="Add" onmouseover="add_react(this)" onmouseout="add_unreact(this)">
+            </form>
+        </div>
+        <div class="your_location">
+            <h2>Your Favorites</h2>
+            <!-- fill in with jinja code -->
+        </div>
+    </div>
+    <script src="../static/script.js"></script>
+</body>
+</html>

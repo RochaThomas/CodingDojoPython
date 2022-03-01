@@ -27,17 +27,17 @@
     align-items: center;
     gap: 10px;
 }
-.navbar_login, .navbar_sign_up{
+.navbar_login, .navbar_sign_up, .navbar_link{
     padding: 10px;
     border: none;
     border-radius: 5px;
 }
-.navbar_login {
+.navbar_login, .navbar_link{
     background-color: white;
     color: #e00a05;
     font-size: 12pt;
 }
-.on_hover_navbar_login {
+.on_hover_navbar_login, .on_hover_navbar_link {
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
     border-bottom: #e00a05 solid;
@@ -102,6 +102,10 @@
     border-radius: 5px;
     font-size: 40pt;
 }
+.a_box {
+    text-decoration: none;
+    color: black;
+}
 .on_hover_boxes {
     color: white;
     background-color: #e00a05;
@@ -135,12 +139,12 @@
 .register input, .login_form input {
     width: 200px;
 }
-.sign_up_button, .login_button {
+.sign_up_button, .login_button, .add_button {
     border-color: #e00a05;
     color: #e00a05;
     font-size: 36pt;
 }
-.on_hover_sign_up_button, .on_hover_login_button {
+.on_hover_sign_up_button, .on_hover_login_button, .on_hover_add_button {
     background-color: #e00a05;
     color: white;
 }
@@ -162,4 +166,48 @@
     height: 300px;
     border: black thick solid;
     border-radius: 5px;
+}
+
+.content_add {
+    gap: 200px
+}
+.add_div {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.add_form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    /* width: 300px; */
+}
+.add_form label {
+    font-size: 16pt;
+    float: left;
+}
+.add_form input {
+    width: 200px;
+}
+.input_div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+.address {
+    display: flex;
+    flex-direction: column;
+}
+#add_button {
+    align-self: flex-end;
+    font-size: 24pt;
+    width: 150px;
+}
+.input_and_unit {
+    display: flex;
+    gap: 5px;
+}
+#min_away {
+    width: 40px;
 }
