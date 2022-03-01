@@ -54,3 +54,10 @@ function add_react(element) {
 function add_unreact(element) {
     element.classList.remove("on_hover_add_button");
 }
+
+function rand_favs_btns_react(element) {
+    element.classList.add("on_hover_red_btn_white_wrd");
+}
+function rand_favs_btns_unreact(element) {
+    element.classList.remove("on_hover_red_btn_white_wrd");
+}

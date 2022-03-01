@@ -139,12 +139,12 @@
 .register input, .login_form input {
     width: 200px;
 }
-.sign_up_button, .login_button, .add_button {
+.sign_up_button, .login_button, .add_button, .red_btn_white_wrd {
     border-color: #e00a05;
     color: #e00a05;
     font-size: 36pt;
 }
-.on_hover_sign_up_button, .on_hover_login_button, .on_hover_add_button {
+.on_hover_sign_up_button, .on_hover_login_button, .on_hover_add_button, .on_hover_red_btn_white_wrd {
     background-color: #e00a05;
     color: white;
 }
@@ -210,4 +210,40 @@
 }
 #min_away {
     width: 40px;
+}
+
+.choose_location, .select_favorites {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+.select_favorites h3 {
+    text-align: center;
+}
+.location_form {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.fav_options {
+    border: #e00a05 thick solid;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 5px;
+}
+.rand_favs_btns {
+    border-width: medium;
+    font-size: 14pt;
+}
+
+.result_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+.result_display {
+    display: flex;
+    gap: 100px;
 }

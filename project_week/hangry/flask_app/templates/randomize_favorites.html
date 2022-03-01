@@ -16,7 +16,7 @@
             <a href=""><button class="button navbar_link" onmouseover="nav_link_react(this)" onmouseout="nav_link_unreact(this)">Find A New Go-To</button></a>
         </div>
     </div>
-    <div class="choose_location">
+    <div class="content choose_location">
         <h1>Get a Random Favorite!</h1>
         <h3>Choose a list of your favorite options based on your location</h3>
         <form class="location_form" action="" method="post">
@@ -25,14 +25,19 @@
                 <option value="all">All Favorites</option>
                 <!-- jinja code that displays the users saved locations -->
             </select>
-            <input type="submit" value="Update Favorite Options">
+            <input class="button box_button red_btn_white_wrd rand_favs_btns" type="submit" value="Select" onmouseover="rand_favs_btns_react(this)" onmouseout="rand_favs_btns_unreact(this)">
         </form>
     </div>
-    <div class="select_favorites">
-        <h3>Deselect options that don't sound good right now</h3>
-        <form class="fav_options" action="" method="post">
+    <div class="content select_favorites">
+        <h3>Deselect options that don't sound good right now.<br>Then click "Pick A Favorite" to pick a random restaurant from your selected favorites.</h3>
+        <form action="" method="post">
+            <div class="fav_options">
+                <p>example</p>
+                <p>example</p>
+                <p>example</p>
+            </div>
             <!-- jinja code that shows all of the favorites assosiated with the location list pre checked off -->
-            <input type="submit" value="Update Favorite Options">
+            <input class="button box_button red_btn_white_wrd rand_favs_btns" type="submit" value="Pick A Favorite" onmouseover="rand_favs_btns_react(this)" onmouseout="rand_favs_btns_unreact(this)">
         </form>
     </div>
     <script src="../static/script.js"></script>
