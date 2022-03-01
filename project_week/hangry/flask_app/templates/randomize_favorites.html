@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangry: Randomize Favorites</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <h2 id="page_title">Hangry</h2>
+        <div class="button_div">
+            <a href=""><button class="button navbar_link" onmouseover="nav_link_react(this)" onmouseout="nav_link_unreact(this)">Add New Favorite</button></a>
+            <a href=""><button class="button navbar_link" onmouseover="nav_link_react(this)" onmouseout="nav_link_unreact(this)">Add New Location</button></a>
+            <a href=""><button class="button navbar_link" onmouseover="nav_link_react(this)" onmouseout="nav_link_unreact(this)">Find A New Go-To</button></a>
+        </div>
+    </div>
+    <div class="choose_location">
+        <h1>Get a Random Favorite!</h1>
+        <h3>Choose a list of your favorite options based on your location</h3>
+        <form class="location_form" action="" method="post">
+            <label for="location_list">Location List: </label>
+            <select name="location_list" id="location_list">
+                <option value="all">All Favorites</option>
+                <!-- jinja code that displays the users saved locations -->
+            </select>
+            <input type="submit" value="Update Favorite Options">
+        </form>
+    </div>
+    <div class="select_favorites">
+        <h3>Deselect options that don't sound good right now</h3>
+        <form class="fav_options" action="" method="post">
+            <!-- jinja code that shows all of the favorites assosiated with the location list pre checked off -->
+            <input type="submit" value="Update Favorite Options">
+        </form>
+    </div>
+    <script src="../static/script.js"></script>
+</body>
+</html>
