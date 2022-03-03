@@ -141,7 +141,7 @@
 .register input, .login_form input {
     width: 200px;
 }
-.reg_error, .login_error {
+.reg_error, .login_error, .location_entry_error {
     text-align: center;
     color: #e00a05;
     font-size: 12pt;
@@ -253,4 +253,16 @@
 .result_display {
     display: flex;
     gap: 100px;
+}
+
+.your_locations {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.your_locations ul {
+    list-style-type: none;
+}
+.your_locations li {
+    font-size: 16pt;
 }

@@ -1,5 +1,6 @@
 
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask import flash
 
 class Location:
     db_name = "hangry_schema"
@@ -33,4 +34,8 @@ class Location:
 
     @staticmethod
     def is_valid_location_entry(location):
-        pass
+        is_valid = True
+        if len(location['name']) < 1:
+            flash('Name must be at least one character.', 'location_entry_error')
+            is_valid = False
+        return is_valid
