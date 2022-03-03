@@ -9,7 +9,7 @@ bcrypt = Bcrypt(app)
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 class User:
-    db_name = 'Belt_Exam_02'
+    db_name = 'hangry_schema'
     def __init__(self, data):
         self.id = data['id']
         self.first_name = data['first_name']
@@ -45,30 +45,30 @@ class User:
     def registration_is_valid(user):
         is_valid = True
         if len(user['first_name']) < 2:
-            flash('First name must be at least 2 characters long', 'registration_error')
+            flash('First name must be at least 2 characters long.', 'registration_error')
             is_valid = False
         if not user['first_name'].isalpha():
-            flash('First name must contain only letters', 'registration_error')
+            flash('First name must contain only letters.', 'registration_error')
             is_valid = False
         if len(user['last_name']) < 2:
-            flash('Last name must be at least 2 characters long', 'registration_error')
+            flash('Last name must be at least 2 characters long.', 'registration_error')
             is_valid = False
         if not user['last_name'].isalpha():
-            flash('Last name must contain only letters', 'registration_error')
+            flash('Last name must contain only letters.', 'registration_error')
             is_valid = False
         results = User.get_user_by_email(user)
         if results:
-            flash('Email is already in use', 'registration_error')
+            flash('Email is already in use.', 'registration_error')
             is_valid = False
         if not EMAIL_REGEX.match(user['email']):
-            flash('Invalid email address', 'registration_error')
+            flash('Invalid email address.', 'registration_error')
             is_valid = False
         if len(user['password']) < 8:
-            flash('Password must be at least 8 characters long', 'registration_error')
+            flash('Password must be at least 8 characters long.', 'registration_error')
             is_valid = False
         # look into password regex (not required)
         if user['password'].islower():
-            flash('Password must contain an uppercase letter', 'registration_error')
+            flash('Password must contain an uppercase letter.', 'registration_error')
             is_valid = False
         # password regex would handle next logic portion
         num_of_nums = 0
@@ -76,10 +76,10 @@ class User:
             if char.isdigit():
                 num_of_nums += 1
         if num_of_nums < 1:
-            flash('Password must contain at least 1 number', 'registration_error')
+            flash('Password must contain at least 1 number.', 'registration_error')
             is_valid = False
         if user['confirm_password'] != user['password']:
-            flash('Password and password confirmation do not match', 'registration_error')
+            flash('Password and password confirmation do not match.', 'registration_error')
             is_valid = False
         return is_valid
 
@@ -88,9 +88,9 @@ class User:
         is_valid = True
         user_info = User.get_user_by_email(user)
         if not user_info:
-            flash('Invalid email and/or password', 'login_error')
+            flash('Invalid email and/or password.', 'login_error')
             is_valid = False
         elif not bcrypt.check_password_hash(user_info.password, user['password']):
-            flash('Invalid email and/or password', 'login_error')
+            flash('Invalid email and/or password.', 'login_error')
             is_valid = False
         return is_valid

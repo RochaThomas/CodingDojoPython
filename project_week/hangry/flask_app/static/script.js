@@ -20,6 +20,13 @@ function nav_sign_up_unreact(element) {
     element.classList.remove("on_hover_navbar_sign_up");
 }
 
+function nav_logout_react(element) {
+    element.classList.add("on_hover_navbar_logout");
+}
+function nav_logout_unreact(element) {
+    element.classList.remove("on_hover_navbar_logout");
+}
+
 function box_react(element) {
     element.classList.add("on_hover_boxes");
 }

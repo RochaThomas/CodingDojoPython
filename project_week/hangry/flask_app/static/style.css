@@ -27,7 +27,7 @@
     align-items: center;
     gap: 10px;
 }
-.navbar_login, .navbar_sign_up, .navbar_link{
+.navbar_login, .navbar_sign_up, .navbar_link, .navbar_logout{
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -42,13 +42,13 @@
     border-bottom-left-radius: 0px;
     border-bottom: #e00a05 solid;
 }
-.navbar_sign_up {
+.navbar_sign_up, .navbar_logout {
     background-color: white;
     border: #e00a05 solid;
     color: #e00a05;
     font-size: 12pt;
 }
-.on_hover_navbar_sign_up {
+.on_hover_navbar_sign_up, .on_hover_navbar_logout {
     color: white;
     background-color: #e00a05;
 }
@@ -129,7 +129,9 @@
     justify-content: space-evenly;
     align-items: center;
     width: 300px;
-    height: 400px;
+    /* height: 400px; */
+    gap: 10px;
+    padding: 10px 0px;
     border: black thick solid;
     border-radius: 5px;
 }
@@ -138,6 +140,11 @@
 }
 .register input, .login_form input {
     width: 200px;
+}
+.reg_error, .login_error {
+    text-align: center;
+    color: #e00a05;
+    font-size: 12pt;
 }
 .sign_up_button, .login_button, .add_button, .red_btn_white_wrd {
     border-color: #e00a05;
