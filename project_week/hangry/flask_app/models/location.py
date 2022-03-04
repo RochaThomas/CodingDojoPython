@@ -24,7 +24,7 @@ class Location:
     def get_all_locations(cls, data):
         query = """SELECT * FROM locations
                 LEFT JOIN users ON locations.user_id = users.id
-                WHERE users_id = %(id)s;"""
+                WHERE user_id = %(id)s;"""
         results = connectToMySQL(cls.db_name).query_db(query, data)
         locations = []
         if results:
@@ -32,10 +32,30 @@ class Location:
                 locations.append( cls(row) )
         return locations
 
+    @classmethod
+    def get_location_by_name(cls, data):
+        query = """SELECT * FROM locations
+                LEFT JOIN users ON locations.user_id = users.id
+                WHERE user_id = %(id)s AND name = %(name)s;"""
+        result = connectToMySQL(cls.db_name).query_db(query, data)
+        print(result)
+        location = None
+        if result:
+            location = cls(result[0])
+        return location
+
     @staticmethod
     def is_valid_location_entry(location):
         is_valid = True
         if len(location['name']) < 1:
             flash('Name must be at least one character.', 'location_entry_error')
+            is_valid = False
+        data = {
+            'id': location['user_id'],
+            'name': location['name']
+        }
+        check = Location.get_location_by_name(data)
+        if check:
+            flash('You already have a location with that name. Location names must be unique.', 'location_entry_error')
             is_valid = False
         return is_valid

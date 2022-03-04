@@ -68,3 +68,33 @@ function rand_favs_btns_react(element) {
 function rand_favs_btns_unreact(element) {
     element.classList.remove("on_hover_red_btn_white_wrd");
 }
+
+
+var geocoder;
+var map;
+function initMap() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(37.4221, -122.0841);
+    var mapOptions = {
+        zoom: 14,
+        center: latlng
+    }
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    geocodeAddress();
+}
+
+function geocodeAddress() {
+    var address = document.getElementById('address').innerText;
+    console.log(address)
+    geocoder.geocode( {'address': address}, function(results, status) {
+        if (status == 'OK') {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+        } else {
+            alert('Geocode was not successful for the following resason: ' + status);
+        }
+    });
+}

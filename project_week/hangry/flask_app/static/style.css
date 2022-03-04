@@ -141,7 +141,7 @@
 .register input, .login_form input {
     width: 200px;
 }
-.reg_error, .login_error, .location_entry_error {
+.reg_error, .login_error, .location_entry_error , .restaurant_entry_error, .selection_error{
     text-align: center;
     color: #e00a05;
     font-size: 12pt;
@@ -255,14 +255,40 @@
     gap: 100px;
 }
 
-.your_locations {
+.your_locations, .your_favorites {
     display: flex;
     flex-direction: column;
     gap: 25px;
 }
-.your_locations ul {
+.your_locations h2, .your_favorites h2 {
+    font-size: 22pt;
+}
+.your_locations ul, .your_favorites ul {
     list-style-type: none;
 }
 .your_locations li {
     font-size: 16pt;
+}
+.location_entry_error, .restaurant_entry_error {
+    width: 325px;
+}
+.location_names {
+    font-size: 16pt;
+    font-weight: 600;
+    margin-top: 10px;
+}
+.favorite_names {
+    font-size: 14pt;
+    text-indent: 10%;
+}
+
+.result_info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#map {
+    height: 500px;
+    width: 500px;
 }

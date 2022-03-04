@@ -1,5 +1,8 @@
 
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask import flash
+from flask_app.models.users_favorite import Users_favorite
+import random
 
 class Restaurant:
     db_name = "hangry_schema"
@@ -14,27 +17,22 @@ class Restaurant:
         self.updated_at = data['updated_at']
 
     @classmethod
-    def get_one_restaurant(cls, data):
-        query = "SELECT * FROM restaurants WHERE id = %(id)s;"
+    def add_restaurant(cls, data):
+        query = """INSERT INTO restaurants (name, street, city, zipcode, min_away, created_at, updated_at)
+                VALUES (%(name)s, %(street)s, %(city)s, %(zipcode)s, %(min_away)s, NOW(), NOW());"""
         return connectToMySQL(cls.db_name).query_db(query, data)
 
     @classmethod
-    def get_all_favorites_for_user(cls, data):
-        query = """SELECT * FROM users
-                LEFT JOIN users_favorites ON users.id = users_favorites.user_id
-                LEFT JOIN restaurants ON users_favorites.restaurant_id = restaurants.id
-                WHERE users.id = %(id)s;"""
+    def get_one_restaurant(cls, data):
+        query = "SELECT * FROM restaurants WHERE id = %(id)s;"
         results = connectToMySQL(cls.db_name).query_db(query, data)
-        users_favorites = []
         if results:
-            for row in results:
-                users_favorites.append( cls(row) )
-        return users_favorites
-
-
+            restaurant = cls( results[0] )
+        return restaurant
+    
     @classmethod
     def get_all_favorites_for_location(cls, data):
-        query = """SELECT * FROM locations
+        query = """SELECT restaurants.* FROM locations
                 LEFT JOIN users_favorites ON locations.id = users_favorites.location_id
                 LEFT JOIN restaurants ON users_favorites.restaurant_id = restaurants.id
                 WHERE locations.id = %(id)s;"""
@@ -47,8 +45,32 @@ class Restaurant:
 
     @classmethod
     def get_one_random(cls, data):
-        pass
+        restaurant_ids = [];
+        for key in data:
+            restaurant_ids.append(int(data[key]))
+        random_id = restaurant_ids[random.randint(0,(len(restaurant_ids)-1))]
+        return random_id
 
     @staticmethod
     def is_valid_restaurant_entry(restaurant):
-        pass
+        is_valid = True
+        if len(restaurant['name']) < 2:
+            flash('Name must be at least two characters.', 'restaurant_entry_error')
+            is_valid = False
+        data = {
+            'id': restaurant['location_id']
+        }
+        if restaurant['location_id'] == '':
+            flash('Field "Location List" is required.', 'restaurant_entry_error')
+            is_valid = False
+        else:
+            all_favorites_for_location = Restaurant.get_all_favorites_for_location(data)
+            if all_favorites_for_location:
+                for one_favorite in all_favorites_for_location:
+                    if one_favorite.name == restaurant['name']:
+                        flash('You already have a favorite with that name for this location. Restaurant names must be unique.', 'location_entry_error')
+                        is_valid = False
+        if restaurant['min_away'] == '':
+            flash('Field "How Far Away It Is" is required.', 'restaurant_entry_error')
+            is_valid = False
+        return is_valid
